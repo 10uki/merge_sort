@@ -1,0 +1,74 @@
+package merge_sort;
+
+public class IntegerMergeSort {
+
+	// TODO Write a java program (IntegerMergeSort.java) to implement the Merge Sort
+	// algorithm to sort the integer array.
+
+	public void mergeSort(int[] A, int lowerBound, int upperBound) {
+		// If the lowerBound is greater than or equal to the upperBound,
+		// it means the sub-array has either 0 or 1 element, and no further sorting is required.
+		// In this case, return and stop the recursion.
+		if (lowerBound >= upperBound) {
+			return;
+		}
+		
+		// Define the midPoint as the sum of the lowerBound and upperBound, and dividing it by 2.
+		int midPoint = (lowerBound + upperBound) / 2;
+		
+		// Recursively apply merge sort to the left sub-array.
+		mergeSort(A, lowerBound, midPoint);
+		// Recursively apply merge sort to the right sub-array.
+		mergeSort(A, midPoint + 1, upperBound);
+		// Merge the sorted sub-arrays.
+		merge(A, lowerBound, midPoint, upperBound);
+	}
+
+	public void merge(int[] A, int lowerBound, int midPoint, int upperBound) {
+		// Define the left sub-array as the midPoint minus the lowerBound + 1 to account
+		// for the inclusive range of elements.
+		int nL = midPoint - lowerBound + 1;
+		// Define the right sub-array as the upperBound minus the midPoint.
+		int nR = upperBound - midPoint;
+
+		int[] L = new int[nL];
+		int[] R = new int[nR];
+		
+		// Copy elements from the array to L.
+		for (int i = 0; i < nL; i++) {
+			L[i] = A[lowerBound + i];
+		}
+		 // Copy elements from the array to R.
+		for (int j = 0; j < nR; j++) {
+			R[j] = A[midPoint + j + 1];
+		}
+
+		int i = 0, j = 0, k = lowerBound;
+		
+        // Merge the sub-arrays.
+		while (i < nL && j < nR) {
+			if (L[i] <= R[j]) {
+				A[k] = L[i];
+				i++;
+			} else {
+				A[k] = R[j];
+				j++;
+			}
+			k++;
+		}
+
+        // Copy any remaining elements from the left sub-array.
+		while (i < nL) {
+			A[k] = L[i];
+			i++;
+			k++;
+		}
+
+        // Copy any remaining elements from the right sub-array.
+		while (j < nR) {
+			A[k] = R[j];
+			j++;
+			k++;
+		}
+	}
+}
