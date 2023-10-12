@@ -1,0 +1,31 @@
+package merge_sort;
+
+import java.util.Arrays;
+
+public class Demo {
+    public static void main(String[] args) {
+    	//testing array of 10 random number
+        int[] arr = {82, 10, 78, 38, 47, 65, 22, 65, 58, 22};
+        int lowerBound1 = 0;
+        int upperBound1 = arr.length - 1;
+
+        System.out.println("Array Before Merge Sort: " + Arrays.toString(arr));
+
+        IntegerMergeSort mergeSort1 = new IntegerMergeSort();
+        mergeSort1.mergeSort(arr, lowerBound1, upperBound1);
+
+        System.out.println("Array After Merge Sort: " + Arrays.toString(arr));
+        
+        //testing 5 names 
+        String[] names = {"Raven", "BeastBoy", "Robin", "Starfire", "Cyborg"};
+        int lowerBound2 = 0;
+        int upperBound2 = names.length - 1;
+
+        System.out.println("\nArray Before Merge Sort: " + Arrays.toString(names));
+
+        AnyTypeMergeSort<String> mergeSort2 = new AnyTypeMergeSort<>();
+        mergeSort2.mergeSortAny(names, lowerBound2, upperBound2);
+
+        System.out.println("Array After Merge Sort: " + Arrays.toString(names));
+    }
+}
